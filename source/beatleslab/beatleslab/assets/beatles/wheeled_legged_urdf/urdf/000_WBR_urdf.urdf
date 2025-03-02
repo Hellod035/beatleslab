@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="000_WBR_urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="3.6" />
+      <inertia
+        ixx="0.017282"
+        ixy="1.567E-05"
+        ixz="-0.00036424"
+        iyy="0.013925"
+        iyz="-1.76E-05"
+        izz="0.018901" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/base_link.STL" />
+      </geometry>
+
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="TighL">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.877" />
+      <inertia
+        ixx="0.052137"
+        ixy="0.00080537"
+        ixz="-1.2154E-05"
+        iyy="0.00079671"
+        iyz="-0.0026655"
+        izz="0.052395" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/TighL.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/TighL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HipL"
+    type="revolute">
+    <origin
+      xyz="0 0.10326 -0.003"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="TighL" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="100"
+      velocity="100" />
+  </joint>
+  <link
+    name="ShankL">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.592" />
+      <inertia
+        ixx="0.028833"
+        ixy="7.361E-06"
+        ixz="2.98E-07"
+        iyy="0.00033282"
+        iyz="-0.00156"
+        izz="0.028939" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/ShankL.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/ShankL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="KneeL"
+    type="revolute">
+    <origin
+      xyz="0 0.26 0.04376"
+      rpy="0 0 0" />
+    <parent
+      link="TighL" />
+    <child
+      link="ShankL" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="0"
+      effort="100"
+      velocity="100" />
+  </joint>
+  <link
+    name="WheelL">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.543" />
+      <inertia
+        ixx="0.0011434"
+        ixy="0"
+        ixz="0"
+        iyy="0.0011434"
+        iyz="1E-09"
+        izz="0.0021259" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/WheelL.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/WheelL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HubL"
+    type="continuous">
+    <origin
+      xyz="0 0.26 0.03525"
+      rpy="0 0 0" />
+    <parent
+      link="ShankL" />
+    <child
+      link="WheelL" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="100"
+      velocity="100" />
+  </joint>
+  <link
+    name="TighR">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.877" />
+      <inertia
+        ixx="0.052137"
+        ixy="-0.00082186"
+        ixz="-1.291E-05"
+        iyy="0.00079671"
+        iyz="0.0026655"
+        izz="0.052395" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/TighR.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/TighR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HipR"
+    type="revolute">
+    <origin
+      xyz="0 -0.09926 -0.003"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="TighR" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="ShankR">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.592" />
+      <inertia
+        ixx="0.028833"
+        ixy="7.361E-06"
+        ixz="-2.98E-07"
+        iyy="0.00033282"
+        iyz="0.00156"
+        izz="0.028939" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/ShankR.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/ShankR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="KneeR"
+    type="revolute">
+    <origin
+      xyz="0 -0.26 0.04376"
+      rpy="0 0 0" />
+    <parent
+      link="TighR" />
+    <child
+      link="ShankR" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="WheelR">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.543" />
+      <inertia
+        ixx="0.0011434"
+        ixy="0"
+        ixz="0"
+        iyy="0.0011434"
+        iyz="-1E-09"
+        izz="0.0021259" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/WheelR.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="./meshes/WheelR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="HubR"
+    type="continuous">
+    <origin
+      xyz="0 -0.26 0.03525"
+      rpy="0 0 0" />
+    <parent
+      link="ShankR" />
+    <child
+      link="WheelR" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="100"
+      velocity="100" />
+  </joint>
+</robot>
