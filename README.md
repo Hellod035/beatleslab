@@ -26,21 +26,9 @@ This repository serves as a template for building projects or extensions based o
 - Clone this repository separately from the Isaac Lab installation (i.e. outside the `IsaacLab` directory):
 
 ```bash
-# Option 1: HTTPS
-git clone https://github.com/isaac-sim/IsaacLabExtensionTemplate.git
-
-# Option 2: SSH
-git clone git@github.com:isaac-sim/IsaacLabExtensionTemplate.git
+git clone https://github.com/Hellod035/beatleslab
 ```
 
-- Throughout the repository, the name `beatleslab` only serves as an example and we provide a script to rename all the references to it automatically:
-
-```bash
-# Enter the repository
-cd IsaacLabExtensionTemplate
-# Rename all occurrences of beatleslab (in files/directories) to your_fancy_extension_name
-python scripts/rename_template.py your_fancy_extension_name
-```
 
 - Using a python interpreter that has Isaac Lab installed, install the library
 
