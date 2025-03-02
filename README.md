@@ -51,7 +51,7 @@ python -m pip install -e source/beatleslab
 - Verify that the extension is correctly installed by running the following command:
 
 ```bash
-python scripts/rsl_rl/train.py --task=Template-Isaac-Velocity-Rough-Anymal-D-v0
+python scripts/rsl_rl/play.py --task Beatles-Flat-Play
 ```
 
 ### Set up IDE (Optional)
