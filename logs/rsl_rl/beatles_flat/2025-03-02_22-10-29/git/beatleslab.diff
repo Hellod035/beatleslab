@@ -1,0 +1,1662 @@
+--- git status ---
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   README.md
+	modified:   docker/Dockerfile
+	modified:   pyproject.toml
+	new file:   run.sh
+	modified:   scripts/list_envs.py
+	modified:   scripts/rsl_rl/play.py
+	modified:   scripts/rsl_rl/train.py
+	renamed:    source/ext_template/ext_template/__init__.py -> source/beatleslab/beatleslab/__init__.py
+	new file:   source/beatleslab/beatleslab/assets/__init__.py
+	new file:   source/beatleslab/beatleslab/assets/beatles.py
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/.asset_hash
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/beatles.usd
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/config.yaml
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_base.usd
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_physics.usd
+	new file:   source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_sensor.usd
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/000_WBR_urdf.urdf
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankL.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankR.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighL.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighR.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelL.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelR.STL
+	new file:   source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/base_link.STL
+	renamed:    source/ext_template/ext_template/tasks/__init__.py -> source/beatleslab/beatleslab/tasks/__init__.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/__init__.py -> source/beatleslab/beatleslab/tasks/locomotion/__init__.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/__init__.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/__init__.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/config/__init__.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/config/__init__.py
+	new file:   source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/__init__.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/__init__.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/__init__.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/rsl_rl_ppo_cfg.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/rsl_rl_ppo_cfg.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/velocity_env_cfg.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/flat_env_cfg.py
+	renamed:    source/ext_template/ext_template/tasks/locomotion/velocity/mdp/__init__.py -> source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/__init__.py
+	new file:   source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/curriculums.py
+	new file:   source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/observations.py
+	new file:   source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/rewards.py
+	new file:   source/beatleslab/beatleslab/terrains/__init__.py
+	new file:   source/beatleslab/beatleslab/terrains/terrain_generator_cfg.py
+	renamed:    source/ext_template/ext_template/ui_extension_example.py -> source/beatleslab/beatleslab/ui_extension_example.py
+	renamed:    source/ext_template/config/extension.toml -> source/beatleslab/config/extension.toml
+	renamed:    source/ext_template/docs/CHANGELOG.rst -> source/beatleslab/docs/CHANGELOG.rst
+	renamed:    source/ext_template/setup.py -> source/beatleslab/setup.py
+	deleted:    source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/__init__.py
+	deleted:    source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/flat_env_cfg.py
+	deleted:    source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/rough_env_cfg.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	rsl_rl/
+ 
+
+
+--- git diff ---
+diff --git a/README.md b/README.md
+index 5052cad..8a2df19 100644
+--- a/README.md
++++ b/README.md
+@@ -33,19 +33,19 @@ git clone https://github.com/isaac-sim/IsaacLabExtensionTemplate.git
+ git clone git@github.com:isaac-sim/IsaacLabExtensionTemplate.git
+ ```
+ 
+-- Throughout the repository, the name `ext_template` only serves as an example and we provide a script to rename all the references to it automatically:
++- Throughout the repository, the name `beatleslab` only serves as an example and we provide a script to rename all the references to it automatically:
+ 
+ ```bash
+ # Enter the repository
+ cd IsaacLabExtensionTemplate
+-# Rename all occurrences of ext_template (in files/directories) to your_fancy_extension_name
++# Rename all occurrences of beatleslab (in files/directories) to your_fancy_extension_name
+ python scripts/rename_template.py your_fancy_extension_name
+ ```
+ 
+ - Using a python interpreter that has Isaac Lab installed, install the library
+ 
+ ```bash
+-python -m pip install -e source/ext_template
++python -m pip install -e source/beatleslab
+ ```
+ 
+ - Verify that the extension is correctly installed by running the following command:
+@@ -64,7 +64,7 @@ If everything executes correctly, it should create a file .python.env in the `.v
+ 
+ ### Setup as Omniverse Extension (Optional)
+ 
+-We provide an example UI extension that will load upon enabling your extension defined in `source/ext_template/ext_template/ui_extension_example.py`.
++We provide an example UI extension that will load upon enabling your extension defined in `source/beatleslab/beatleslab/ui_extension_example.py`.
+ 
+ To enable your extension, follow these steps:
+ 
+@@ -177,7 +177,7 @@ In some VsCode versions, the indexing of part of the extensions is missing. In t
+ ```json
+ {
+     "python.analysis.extraPaths": [
+-        "<path-to-ext-repo>/source/ext_template"
++        "<path-to-ext-repo>/source/beatleslab"
+     ]
+ }
+ ```
+diff --git a/docker/Dockerfile b/docker/Dockerfile
+index 1785c44..6ff79f7 100644
+--- a/docker/Dockerfile
++++ b/docker/Dockerfile
+@@ -13,7 +13,7 @@ COPY ../ ${DOCKER_ISAACLAB_EXTENSION_TEMPLATE_PATH}
+ 
+ # # Install whatever you need as additional dependencies.
+ RUN bash -i -c "source ${HOME}/.bashrc && \
+-    cd ${DOCKER_ISAACLAB_EXTENSION_TEMPLATE_PATH}/source/ext_template && \
++    cd ${DOCKER_ISAACLAB_EXTENSION_TEMPLATE_PATH}/source/beatleslab && \
+     pip install -e ."
+ 
+ # make working directory as the Isaac Lab directory
+diff --git a/pyproject.toml b/pyproject.toml
+index 8905644..5dd1d70 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -56,7 +56,7 @@ known_isaaclabparty = [
+ ]
+ 
+ # Modify the following to include the package names of your first-party code
+-known_firstparty = "ext_template"
++known_firstparty = "beatleslab"
+ known_local_folder = "config"
+ 
+ [tool.pyright]
+diff --git a/run.sh b/run.sh
+new file mode 100644
+index 0000000..3d6b68a
+--- /dev/null
++++ b/run.sh
+@@ -0,0 +1,11 @@
++conda activate beatleslab
++cd ~/projects/beatleslab
++python scripts/rsl_rl/train.py --task Beatles-Flat --headless
++
++
++
++conda activate beatleslab
++cd ~/projects/beatleslab
++python scripts/rsl_rl/play.py --task Beatles-Flat-Play
++
++
+diff --git a/scripts/list_envs.py b/scripts/list_envs.py
+index 02b0c97..31b009e 100644
+--- a/scripts/list_envs.py
++++ b/scripts/list_envs.py
+@@ -20,7 +20,7 @@ import gymnasium as gym
+ from prettytable import PrettyTable
+ 
+ # Import extensions to set up environment tasks
+-import ext_template.tasks  # noqa: F401
++import beatleslab.tasks  # noqa: F401
+ 
+ 
+ def main():
+diff --git a/scripts/rsl_rl/play.py b/scripts/rsl_rl/play.py
+index e381348..8b1294d 100644
+--- a/scripts/rsl_rl/play.py
++++ b/scripts/rsl_rl/play.py
+@@ -45,7 +45,7 @@ from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlVecEnvWrapper, expor
+ from isaaclab_tasks.utils import get_checkpoint_path, parse_env_cfg
+ 
+ # Import extensions to set up environment tasks
+-import ext_template.tasks  # noqa: F401
++import beatleslab.tasks  # noqa: F401
+ 
+ 
+ def main():
+diff --git a/scripts/rsl_rl/train.py b/scripts/rsl_rl/train.py
+index 3df343d..4d1e2d4 100644
+--- a/scripts/rsl_rl/train.py
++++ b/scripts/rsl_rl/train.py
+@@ -65,7 +65,7 @@ from isaaclab_tasks.utils import get_checkpoint_path
+ from isaaclab_tasks.utils.hydra import hydra_task_config
+ 
+ # Import extensions to set up environment tasks
+-import ext_template.tasks  # noqa: F401
++import beatleslab.tasks  # noqa: F401
+ 
+ torch.backends.cuda.matmul.allow_tf32 = True
+ torch.backends.cudnn.allow_tf32 = True
+diff --git a/source/ext_template/ext_template/__init__.py b/source/beatleslab/beatleslab/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/__init__.py
+rename to source/beatleslab/beatleslab/__init__.py
+diff --git a/source/beatleslab/beatleslab/assets/__init__.py b/source/beatleslab/beatleslab/assets/__init__.py
+new file mode 100644
+index 0000000..17b3071
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/__init__.py
+@@ -0,0 +1,13 @@
++# Copyright (c) 2022-2024, The Berkeley Humanoid Project Developers.
++# All rights reserved.
++#
++# SPDX-License-Identifier: BSD-3-Clause
++
++"""Package containing assets implementations for various robotic environments."""
++
++import os
++import toml
++
++# Conveniences to other module directories via relative paths
++ISAAC_ASSET_DIR = os.path.abspath(os.path.dirname(__file__))
++from .beatles import BEATLES_CFG
+diff --git a/source/beatleslab/beatleslab/assets/beatles.py b/source/beatleslab/beatleslab/assets/beatles.py
+new file mode 100644
+index 0000000..6b2d192
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles.py
+@@ -0,0 +1,68 @@
++# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
++# All rights reserved.
++#
++# SPDX-License-Identifier: BSD-3-Clause
++
++import isaaclab.sim as sim_utils
++from isaaclab.assets.articulation import ArticulationCfg
++from isaaclab.actuators import ImplicitActuatorCfg
++from beatleslab.assets import ISAAC_ASSET_DIR
++import math
++
++BEATLES_CFG = ArticulationCfg(
++    spawn=sim_utils.UsdFileCfg(
++        usd_path=f"{ISAAC_ASSET_DIR}/beatles/beatles_usd/beatles.usd",
++        activate_contact_sensors=True,
++        rigid_props=sim_utils.RigidBodyPropertiesCfg(
++            disable_gravity=False,
++            retain_accelerations=False,
++            linear_damping=0.0,
++            angular_damping=0.0,
++            max_linear_velocity=1000.0,
++            max_angular_velocity=1000.0,
++            max_depenetration_velocity=1.0,
++        ),
++        articulation_props=sim_utils.ArticulationRootPropertiesCfg(
++            enabled_self_collisions=False, solver_position_iteration_count=4, solver_velocity_iteration_count=4
++        ),
++    ),
++    init_state=ArticulationCfg.InitialStateCfg(
++        pos=(0.0, 0.0, 0.6),
++        joint_pos={
++            "HipR": -0.8,
++            "KneeR": math.pi / 2,
++            "HubR": 0.0,
++            "HipL": 0.8,
++            "KneeL": -math.pi / 2,
++            "HubL": 0.0
++        },
++        joint_vel={".*": 0.0},
++    ),
++    soft_joint_pos_limit_factor=0.9,
++    actuators={
++        "Hip": ImplicitActuatorCfg(
++            joint_names_expr=[".*Hip.*"],
++            effort_limit=25.0,
++            velocity_limit=20,
++            stiffness={".*": 10.0},
++            damping={".*": 1.5},
++            armature={".*": 0.01},
++        ),
++        "Knee": ImplicitActuatorCfg(
++            joint_names_expr=[".*Knee.*"],
++            effort_limit=25.0,
++            velocity_limit=20,
++            stiffness={".*": 15.0},
++            damping={".*": 1.5},
++            armature={".*": 0.01},
++        ),
++        "Hub": ImplicitActuatorCfg(
++            joint_names_expr=[".*Hub.*"],
++            effort_limit=25.0,
++            velocity_limit=20,
++            stiffness={".*": 0.0},
++            damping={".*": 0.5},
++            armature={".*": 0.01},
++        ),
++    },
++)
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/.asset_hash b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/.asset_hash
+new file mode 100644
+index 0000000..f3acef1
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/.asset_hash
+@@ -0,0 +1 @@
++e4268316f12f528eb9f03541e9ffb3a0
+\ No newline at end of file
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/beatles.usd b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/beatles.usd
+new file mode 100644
+index 0000000..4b5dd5c
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/beatles.usd
+@@ -0,0 +1,3 @@
++version https://git-lfs.github.com/spec/v1
++oid sha256:834e29b6f3f347e58bbd707526a828c3daabecfb2dc146d2f6cce4d85b290837
++size 1605
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/config.yaml b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/config.yaml
+new file mode 100644
+index 0000000..0be3884
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/config.yaml
+@@ -0,0 +1,23 @@
++asset_path: /home/hellod035/software/IsaacLab/wheeled_legged_urdf/urdf/000_WBR_urdf.urdf
++usd_dir: /home/hellod035/software/IsaacLab/beatles
++usd_file_name: beatles.usd
++force_usd_conversion: true
++make_instanceable: true
++fix_base: false
++root_link_name: null
++link_density: 0.0
++merge_fixed_joints: true
++convert_mimic_joints_to_normal_joints: false
++joint_drive:
++  drive_type: force
++  target_type: none
++  gains:
++    stiffness: 0.0
++    damping: 0.0
++collider_type: convex_hull
++self_collision: false
++replace_cylinders_with_capsules: false
++collision_from_visuals: false
++##
++# Generated by UrdfConverter on 2025-03-02 at 21:35:53.
++##
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_base.usd b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_base.usd
+new file mode 100644
+index 0000000..cfdd935
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_base.usd
+@@ -0,0 +1,3 @@
++version https://git-lfs.github.com/spec/v1
++oid sha256:94a43a54556b5fc00c0f15c68ca106998d5fd2a6cc85a95e014a4277d44713ff
++size 29514094
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_physics.usd b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_physics.usd
+new file mode 100644
+index 0000000..93f89b6
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_physics.usd
+@@ -0,0 +1,3 @@
++version https://git-lfs.github.com/spec/v1
++oid sha256:f368720b4decdbe308db711926ff4765b64dd936f3462e40eb31b80de28c3e41
++size 4043
+diff --git a/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_sensor.usd b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_sensor.usd
+new file mode 100644
+index 0000000..daa5026
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/beatles_usd/configuration/beatles_sensor.usd
+@@ -0,0 +1,3 @@
++version https://git-lfs.github.com/spec/v1
++oid sha256:18b43ce4401e7e088492fa4664ce756fb66f558bae4cc4a0f002b5d3e3e7c190
++size 654
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/000_WBR_urdf.urdf b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/000_WBR_urdf.urdf
+new file mode 100644
+index 0000000..bc75bff
+--- /dev/null
++++ b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/000_WBR_urdf.urdf
+@@ -0,0 +1,357 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
++     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
++     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
++<robot
++  name="000_WBR_urdf">
++  <link
++    name="base_link">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="3.6" />
++      <inertia
++        ixx="0.017282"
++        ixy="1.567E-05"
++        ixz="-0.00036424"
++        iyy="0.013925"
++        iyz="-1.76E-05"
++        izz="0.018901" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/base_link.STL" />
++      </geometry>
++
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/base_link.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <link
++    name="TighL">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.877" />
++      <inertia
++        ixx="0.052137"
++        ixy="0.00080537"
++        ixz="-1.2154E-05"
++        iyy="0.00079671"
++        iyz="-0.0026655"
++        izz="0.052395" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/TighL.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/TighL.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="HipL"
++    type="revolute">
++    <origin
++      xyz="0 0.10326 -0.003"
++      rpy="-1.5708 0 0" />
++    <parent
++      link="base_link" />
++    <child
++      link="TighL" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      lower="0"
++      upper="3.14"
++      effort="100"
++      velocity="100" />
++  </joint>
++  <link
++    name="ShankL">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.592" />
++      <inertia
++        ixx="0.028833"
++        ixy="7.361E-06"
++        ixz="2.98E-07"
++        iyy="0.00033282"
++        iyz="-0.00156"
++        izz="0.028939" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/ShankL.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/ShankL.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="KneeL"
++    type="revolute">
++    <origin
++      xyz="0 0.26 0.04376"
++      rpy="0 0 0" />
++    <parent
++      link="TighL" />
++    <child
++      link="ShankL" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      lower="-3.14"
++      upper="0"
++      effort="100"
++      velocity="100" />
++  </joint>
++  <link
++    name="WheelL">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.543" />
++      <inertia
++        ixx="0.0011434"
++        ixy="0"
++        ixz="0"
++        iyy="0.0011434"
++        iyz="1E-09"
++        izz="0.0021259" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/WheelL.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/WheelL.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="HubL"
++    type="continuous">
++    <origin
++      xyz="0 0.26 0.03525"
++      rpy="0 0 0" />
++    <parent
++      link="ShankL" />
++    <child
++      link="WheelL" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      effort="100"
++      velocity="100" />
++  </joint>
++  <link
++    name="TighR">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.877" />
++      <inertia
++        ixx="0.052137"
++        ixy="-0.00082186"
++        ixz="-1.291E-05"
++        iyy="0.00079671"
++        iyz="0.0026655"
++        izz="0.052395" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/TighR.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/TighR.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="HipR"
++    type="revolute">
++    <origin
++      xyz="0 -0.09926 -0.003"
++      rpy="1.5708 0 0" />
++    <parent
++      link="base_link" />
++    <child
++      link="TighR" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      lower="-3.14"
++      upper="0"
++      effort="0"
++      velocity="0" />
++  </joint>
++  <link
++    name="ShankR">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.592" />
++      <inertia
++        ixx="0.028833"
++        ixy="7.361E-06"
++        ixz="-2.98E-07"
++        iyy="0.00033282"
++        iyz="0.00156"
++        izz="0.028939" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/ShankR.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/ShankR.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="KneeR"
++    type="revolute">
++    <origin
++      xyz="0 -0.26 0.04376"
++      rpy="0 0 0" />
++    <parent
++      link="TighR" />
++    <child
++      link="ShankR" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      lower="0"
++      upper="3.14"
++      effort="0"
++      velocity="0" />
++  </joint>
++  <link
++    name="WheelR">
++    <inertial>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <mass
++        value="0.543" />
++      <inertia
++        ixx="0.0011434"
++        ixy="0"
++        ixz="0"
++        iyy="0.0011434"
++        iyz="-1E-09"
++        izz="0.0021259" />
++    </inertial>
++    <visual>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/WheelR.STL" />
++      </geometry>
++    </visual>
++    <collision>
++      <origin
++        xyz="0 0 0"
++        rpy="0 0 0" />
++      <geometry>
++        <mesh
++          filename="./meshes/WheelR.STL" />
++      </geometry>
++    </collision>
++  </link>
++  <joint
++    name="HubR"
++    type="continuous">
++    <origin
++      xyz="0 -0.26 0.03525"
++      rpy="0 0 0" />
++    <parent
++      link="ShankR" />
++    <child
++      link="WheelR" />
++    <axis
++      xyz="0 0 1" />
++    <limit
++      effort="100"
++      velocity="100" />
++  </joint>
++</robot>
+\ No newline at end of file
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankL.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankL.STL
+new file mode 100644
+index 0000000..89c58a5
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankL.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankR.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankR.STL
+new file mode 100644
+index 0000000..38d546b
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/ShankR.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighL.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighL.STL
+new file mode 100644
+index 0000000..45b9a5b
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighL.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighR.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighR.STL
+new file mode 100644
+index 0000000..b4f3c3e
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/TighR.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelL.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelL.STL
+new file mode 100644
+index 0000000..01b76d9
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelL.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelR.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelR.STL
+new file mode 100644
+index 0000000..0366d16
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/WheelR.STL differ
+diff --git a/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/base_link.STL b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/base_link.STL
+new file mode 100644
+index 0000000..80f84b8
+Binary files /dev/null and b/source/beatleslab/beatleslab/assets/beatles/wheeled_legged_urdf/urdf/meshes/base_link.STL differ
+diff --git a/source/ext_template/ext_template/tasks/__init__.py b/source/beatleslab/beatleslab/tasks/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/tasks/__init__.py
+rename to source/beatleslab/beatleslab/tasks/__init__.py
+diff --git a/source/ext_template/ext_template/tasks/locomotion/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/tasks/locomotion/__init__.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/__init__.py
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/__init__.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/__init__.py
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/config/__init__.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/config/__init__.py
+diff --git a/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/__init__.py
+new file mode 100644
+index 0000000..6ce49e9
+--- /dev/null
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/__init__.py
+@@ -0,0 +1,28 @@
++import gymnasium as gym
++
++from . import agents, flat_env_cfg
++
++##
++# Register Gym environments.
++##
++
++gym.register(
++    id="Beatles-Flat",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": flat_env_cfg.BeatlesFlatEnvCfg,
++        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:BeablesFlatPPORunnerCfg",
++    },
++)
++
++gym.register(
++    id="Beatles-Flat-Play",
++    entry_point="isaaclab.envs:ManagerBasedRLEnv",
++    disable_env_checker=True,
++    kwargs={
++        "env_cfg_entry_point": flat_env_cfg.BeatlesFlatEnvCfg_PLAY,
++        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:BeablesFlatPPORunnerCfg",
++    },
++)
++
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/__init__.py
+similarity index 100%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/__init__.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/__init__.py
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/rsl_rl_ppo_cfg.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/rsl_rl_ppo_cfg.py
+similarity index 54%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/rsl_rl_ppo_cfg.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/rsl_rl_ppo_cfg.py
+index 598a0f5..1d7b71b 100644
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/agents/rsl_rl_ppo_cfg.py
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/agents/rsl_rl_ppo_cfg.py
+@@ -3,23 +3,23 @@ from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlPpoActorCriticCfg, R
+ 
+ 
+ @configclass
+-class AnymalDRoughPPORunnerCfg(RslRlOnPolicyRunnerCfg):
++class BeablesFlatPPORunnerCfg(RslRlOnPolicyRunnerCfg):
+     num_steps_per_env = 24
+     max_iterations = 1500
+-    save_interval = 50
+-    experiment_name = "anymal_d_rough"
++    save_interval = 100
++    experiment_name = "beatles_flat"
+     empirical_normalization = False
+     policy = RslRlPpoActorCriticCfg(
+         init_noise_std=1.0,
+-        actor_hidden_dims=[512, 256, 128],
+-        critic_hidden_dims=[512, 256, 128],
++        actor_hidden_dims=[128, 128, 128],
++        critic_hidden_dims=[128, 128, 128],
+         activation="elu",
+     )
+     algorithm = RslRlPpoAlgorithmCfg(
+         value_loss_coef=1.0,
+         use_clipped_value_loss=True,
+         clip_param=0.2,
+-        entropy_coef=0.005,
++        entropy_coef=0.01,
+         num_learning_epochs=5,
+         num_mini_batches=4,
+         learning_rate=1.0e-3,
+@@ -29,14 +29,3 @@ class AnymalDRoughPPORunnerCfg(RslRlOnPolicyRunnerCfg):
+         desired_kl=0.01,
+         max_grad_norm=1.0,
+     )
+-
+-
+-@configclass
+-class AnymalDFlatPPORunnerCfg(AnymalDRoughPPORunnerCfg):
+-    def __post_init__(self):
+-        super().__post_init__()
+-
+-        self.max_iterations = 300
+-        self.experiment_name = "anymal_d_flat"
+-        self.policy.actor_hidden_dims = [128, 128, 128]
+-        self.policy.critic_hidden_dims = [128, 128, 128]
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/velocity_env_cfg.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/flat_env_cfg.py
+similarity index 66%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/velocity_env_cfg.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/flat_env_cfg.py
+index 27a3ea7..d62723d 100644
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/velocity_env_cfg.py
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/config/beatles/flat_env_cfg.py
+@@ -1,12 +1,12 @@
+ from __future__ import annotations
+ 
+ import math
+-from dataclasses import MISSING
++from dataclasses import MISSING  # noqa:F401
+ 
+ import isaaclab.sim as sim_utils
+ from isaaclab.assets import ArticulationCfg, AssetBaseCfg
+ from isaaclab.envs import ManagerBasedRLEnvCfg
+-from isaaclab.managers import CurriculumTermCfg as CurrTerm
++from isaaclab.managers import CurriculumTermCfg as CurrTerm  # noqa:F401
+ from isaaclab.managers import EventTermCfg as EventTerm
+ from isaaclab.managers import ObservationGroupCfg as ObsGroup
+ from isaaclab.managers import ObservationTermCfg as ObsTerm
+@@ -14,17 +14,19 @@ from isaaclab.managers import RewardTermCfg as RewTerm
+ from isaaclab.managers import SceneEntityCfg
+ from isaaclab.managers import TerminationTermCfg as DoneTerm
+ from isaaclab.scene import InteractiveSceneCfg
+-from isaaclab.sensors import ContactSensorCfg, RayCasterCfg, patterns
++from isaaclab.sensors import ContactSensorCfg
+ from isaaclab.terrains import TerrainImporterCfg
+ from isaaclab.utils import configclass
+ from isaaclab.utils.noise import AdditiveUniformNoiseCfg as Unoise
++from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
+ 
+-import ext_template.tasks.locomotion.velocity.mdp as mdp
++import beatleslab.tasks.locomotion.velocity.mdp as mdp
++from beatleslab.assets import BEATLES_CFG
+ 
+ ##
+ # Pre-defined configs
+ ##
+-from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG  # isort: skip
++from beatleslab.terrains import GRAVEL_TERRAINS_CFG
+ 
+ 
+ ##
+@@ -33,14 +35,14 @@ from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG  # isort: skip
+ 
+ 
+ @configclass
+-class MySceneCfg(InteractiveSceneCfg):
++class SceneCfg(InteractiveSceneCfg):
+     """Configuration for the terrain scene with a legged robot."""
+ 
+     # ground terrain
+     terrain = TerrainImporterCfg(
+         prim_path="/World/ground",
+         terrain_type="generator",
+-        terrain_generator=ROUGH_TERRAINS_CFG,
++        terrain_generator=GRAVEL_TERRAINS_CFG,
+         max_init_terrain_level=5,
+         collision_group=-1,
+         physics_material=sim_utils.RigidBodyMaterialCfg(
+@@ -50,31 +52,23 @@ class MySceneCfg(InteractiveSceneCfg):
+             dynamic_friction=1.0,
+         ),
+         visual_material=sim_utils.MdlFileCfg(
+-            mdl_path="{NVIDIA_NUCLEUS_DIR}/Materials/Base/Architecture/Shingles_01.mdl",
++            mdl_path=f"{ISAACLAB_NUCLEUS_DIR}/Materials/TilesMarbleSpiderWhiteBrickBondHoned/TilesMarbleSpiderWhiteBrickBondHoned.mdl",
+             project_uvw=True,
++            texture_scale=(0.25, 0.25),
+         ),
+         debug_vis=False,
+     )
+     # robots
+-    robot: ArticulationCfg = MISSING
+-    # sensors
+-    height_scanner = RayCasterCfg(
+-        prim_path="{ENV_REGEX_NS}/Robot/base",
+-        offset=RayCasterCfg.OffsetCfg(pos=(0.0, 0.0, 20.0)),
+-        attach_yaw_only=True,
+-        pattern_cfg=patterns.GridPatternCfg(resolution=0.1, size=[1.6, 1.0]),
+-        debug_vis=False,
+-        mesh_prim_paths=["/World/ground"],
+-    )
++    robot: ArticulationCfg = BEATLES_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
++
+     contact_forces = ContactSensorCfg(prim_path="{ENV_REGEX_NS}/Robot/.*", history_length=3, track_air_time=True)
+     # lights
+-    light = AssetBaseCfg(
+-        prim_path="/World/light",
+-        spawn=sim_utils.DistantLightCfg(color=(0.75, 0.75, 0.75), intensity=3000.0),
+-    )
+     sky_light = AssetBaseCfg(
+         prim_path="/World/skyLight",
+-        spawn=sim_utils.DomeLightCfg(color=(0.13, 0.13, 0.13), intensity=1000.0),
++        spawn=sim_utils.DomeLightCfg(
++            intensity=750.0,
++            texture_file=f"{ISAAC_NUCLEUS_DIR}/Materials/Textures/Skies/PolyHaven/kloofendal_43d_clear_puresky_4k.hdr",
++        ),
+     )
+ 
+ 
+@@ -96,7 +90,7 @@ class CommandsCfg:
+         heading_control_stiffness=0.5,
+         debug_vis=True,
+         ranges=mdp.UniformVelocityCommandCfg.Ranges(
+-            lin_vel_x=(-1.0, 1.0), lin_vel_y=(-1.0, 1.0), ang_vel_z=(-1.0, 1.0), heading=(-math.pi, math.pi)
++            lin_vel_x=(-1.0, 1.0), lin_vel_y=(0.0, 0.0), ang_vel_z=(-1.0, 1.0), heading=(-math.pi, math.pi)
+         ),
+     )
+ 
+@@ -105,7 +99,8 @@ class CommandsCfg:
+ class ActionsCfg:
+     """Action specifications for the MDP."""
+ 
+-    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*"], scale=0.5, use_default_offset=True)
++    joint_pos = mdp.JointPositionActionCfg(asset_name="robot", joint_names=[".*Hip.*", ".*Knee.*"], scale=0.5, use_default_offset=True)
++    joint_vel = mdp.JointVelocityActionCfg(asset_name="robot", joint_names=[".*Hub.*"], scale=10, use_default_offset=True)
+ 
+ 
+ @configclass
+@@ -117,7 +112,6 @@ class ObservationsCfg:
+         """Observations for policy group."""
+ 
+         # observation terms (order preserved)
+-        base_lin_vel = ObsTerm(func=mdp.base_lin_vel, noise=Unoise(n_min=-0.1, n_max=0.1))
+         base_ang_vel = ObsTerm(func=mdp.base_ang_vel, noise=Unoise(n_min=-0.2, n_max=0.2))
+         projected_gravity = ObsTerm(
+             func=mdp.projected_gravity,
+@@ -127,19 +121,27 @@ class ObservationsCfg:
+         joint_pos = ObsTerm(func=mdp.joint_pos_rel, noise=Unoise(n_min=-0.01, n_max=0.01))
+         joint_vel = ObsTerm(func=mdp.joint_vel_rel, noise=Unoise(n_min=-1.5, n_max=1.5))
+         actions = ObsTerm(func=mdp.last_action)
+-        height_scan = ObsTerm(
+-            func=mdp.height_scan,
+-            params={"sensor_cfg": SceneEntityCfg("height_scanner")},
+-            noise=Unoise(n_min=-0.1, n_max=0.1),
+-            clip=(-1.0, 1.0),
+-        )
+ 
+         def __post_init__(self):
+             self.enable_corruption = True
+             self.concatenate_terms = True
++            # self.history_length = 10
++            # self.flatten_history_dim = False
++
++    @configclass
++    class CriticCfg(PolicyCfg):
++        """Observations for critic group."""
++
++        base_lin_vel = ObsTerm(func=mdp.base_lin_vel)
++        body_contact = ObsTerm(func=mdp.body_contact, params={"sensor_cfg": SceneEntityCfg("contact_forces")})
++
++        def __post_init__(self):
++            self.enable_corruption = False
++            self.concatenate_terms = True
+ 
+     # observation groups
+     policy: PolicyCfg = PolicyCfg()
++    critic: CriticCfg = CriticCfg()
+ 
+ 
+ @configclass
+@@ -152,9 +154,9 @@ class EventCfg:
+         mode="startup",
+         params={
+             "asset_cfg": SceneEntityCfg("robot", body_names=".*"),
+-            "static_friction_range": (0.8, 0.8),
+-            "dynamic_friction_range": (0.6, 0.6),
+-            "restitution_range": (0.0, 0.0),
++            "static_friction_range": (0.6, 1.0),
++            "dynamic_friction_range": (0.4, 0.8),
++            "restitution_range": (0.0, 0.005),
+             "num_buckets": 64,
+         },
+     )
+@@ -163,8 +165,8 @@ class EventCfg:
+         func=mdp.randomize_rigid_body_mass,
+         mode="startup",
+         params={
+-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
+-            "mass_distribution_params": (-5.0, 5.0),
++            "asset_cfg": SceneEntityCfg("robot", body_names="base_link"),
++            "mass_distribution_params": (-3.0, 5.0),
+             "operation": "add",
+         },
+     )
+@@ -174,7 +176,7 @@ class EventCfg:
+         func=mdp.apply_external_force_torque,
+         mode="reset",
+         params={
+-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
++            "asset_cfg": SceneEntityCfg("robot", body_names="base_link"),
+             "force_range": (0.0, 0.0),
+             "torque_range": (-0.0, 0.0),
+         },
+@@ -226,28 +228,24 @@ class RewardsCfg:
+         func=mdp.track_ang_vel_z_exp, weight=0.5, params={"command_name": "base_velocity", "std": math.sqrt(0.25)}
+     )
+     # -- penalties
++    termination_penalty = RewTerm(func=mdp.is_terminated, weight=-200.0)
+     lin_vel_z_l2 = RewTerm(func=mdp.lin_vel_z_l2, weight=-2.0)
+     ang_vel_xy_l2 = RewTerm(func=mdp.ang_vel_xy_l2, weight=-0.05)
+-    dof_torques_l2 = RewTerm(func=mdp.joint_torques_l2, weight=-1.0e-5)
++    energy = RewTerm(func=mdp.energy, weight=-1e-3)
+     dof_acc_l2 = RewTerm(func=mdp.joint_acc_l2, weight=-2.5e-7)
+     action_rate_l2 = RewTerm(func=mdp.action_rate_l2, weight=-0.01)
+-    feet_air_time = RewTerm(
+-        func=mdp.feet_air_time,
+-        weight=0.125,
+-        params={
+-            "sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*FOOT"),
+-            "command_name": "base_velocity",
+-            "threshold": 0.5,
+-        },
+-    )
++    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=-5.0)
+     undesired_contacts = RewTerm(
+         func=mdp.undesired_contacts,
+         weight=-1.0,
+-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=".*THIGH"), "threshold": 1.0},
++        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=[".*Tigh.*", ".*Shank.*"]), "threshold": 1.0},
++    )
++    dof_pos_limits = RewTerm(func=mdp.joint_pos_limits, weight=-1.0)
++    joint_deviation_legs = RewTerm(
++        func=mdp.joint_deviation_l1,
++        weight=-0.05,
++        params={"asset_cfg": SceneEntityCfg("robot", joint_names=[".*Hip.*", ".*Knee.*"])},
+     )
+-    # -- optional penalties
+-    flat_orientation_l2 = RewTerm(func=mdp.flat_orientation_l2, weight=0.0)
+-    dof_pos_limits = RewTerm(func=mdp.joint_pos_limits, weight=0.0)
+ 
+ 
+ @configclass
+@@ -257,7 +255,7 @@ class TerminationsCfg:
+     time_out = DoneTerm(func=mdp.time_out, time_out=True)
+     base_contact = DoneTerm(
+         func=mdp.illegal_contact,
+-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
++        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names=["base_link"]), "threshold": 1.0},
+     )
+ 
+ 
+@@ -265,7 +263,7 @@ class TerminationsCfg:
+ class CurriculumCfg:
+     """Curriculum terms for the MDP."""
+ 
+-    terrain_levels = CurrTerm(func=mdp.terrain_levels_vel)
++    # terrain_levels = CurrTerm(func=mdp.terrain_levels_vel)
+ 
+ 
+ ##
+@@ -274,11 +272,11 @@ class CurriculumCfg:
+ 
+ 
+ @configclass
+-class LocomotionVelocityRoughEnvCfg(ManagerBasedRLEnvCfg):
++class BeatlesFlatEnvCfg(ManagerBasedRLEnvCfg):
+     """Configuration for the locomotion velocity-tracking environment."""
+ 
+     # Scene settings
+-    scene: MySceneCfg = MySceneCfg(num_envs=4096, env_spacing=2.5)
++    scene: SceneCfg = SceneCfg(num_envs=4096, env_spacing=2.5)
+     # Basic settings
+     observations: ObservationsCfg = ObservationsCfg()
+     actions: ActionsCfg = ActionsCfg()
+@@ -291,27 +289,40 @@ class LocomotionVelocityRoughEnvCfg(ManagerBasedRLEnvCfg):
+ 
+     def __post_init__(self):
+         """Post initialization."""
+-        # general settings
++
+         self.decimation = 4
+         self.episode_length_s = 20.0
+-        # simulation settings
++
+         self.sim.dt = 0.005
+         self.sim.render_interval = self.decimation
+         self.sim.disable_contact_processing = True
+         self.sim.physics_material = self.scene.terrain.physics_material
+         self.sim.physx.gpu_max_rigid_patch_count = 10 * 2**15
+-        # update sensor update periods
+-        # we tick all the sensors based on the smallest update period (physics update period)
+-        if self.scene.height_scanner is not None:
+-            self.scene.height_scanner.update_period = self.decimation * self.sim.dt
+-        if self.scene.contact_forces is not None:
+-            self.scene.contact_forces.update_period = self.sim.dt
+-
+-        # check if terrain levels curriculum is enabled - if so, enable curriculum for terrain generator
+-        # this generates terrains with increasing difficulty and is useful for training
+-        if getattr(self.curriculum, "terrain_levels", None) is not None:
+-            if self.scene.terrain.terrain_generator is not None:
+-                self.scene.terrain.terrain_generator.curriculum = True
+-        else:
+-            if self.scene.terrain.terrain_generator is not None:
+-                self.scene.terrain.terrain_generator.curriculum = False
++
++        self.scene.contact_forces.update_period = self.sim.dt
++        self.scene.terrain.terrain_generator.curriculum = False
++
++
++@configclass
++class BeatlesFlatEnvCfg_PLAY(BeatlesFlatEnvCfg):
++    def __post_init__(self):
++        # post init of parent
++        super().__post_init__()
++
++        # make a smaller scene for play
++        self.scene.num_envs = 50
++        self.scene.env_spacing = 2.5
++        self.episode_length_s = 40.0
++        self.scene.terrain.max_init_terrain_level = None
++        self.scene.terrain.terrain_generator.num_rows = 5
++        self.scene.terrain.terrain_generator.num_cols = 5
++        self.scene.terrain.terrain_generator.curriculum = False
++
++        self.commands.base_velocity.ranges.lin_vel_x = (0.5, 0.5)
++        self.commands.base_velocity.ranges.lin_vel_y = (0.0, 0.0)
++        self.commands.base_velocity.ranges.heading = (0.0, 0.0)
++
++        self.observations.policy.enable_corruption = False
++
++        self.events.base_external_force_torque = None
++        self.events.push_robot = None
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/mdp/__init__.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/__init__.py
+similarity index 83%
+rename from source/ext_template/ext_template/tasks/locomotion/velocity/mdp/__init__.py
+rename to source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/__init__.py
+index d00e381..d7575c0 100644
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/mdp/__init__.py
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/__init__.py
+@@ -4,3 +4,4 @@ from isaaclab.envs.mdp import *  # noqa: F401, F403
+ 
+ from .curriculums import *  # noqa: F401, F403
+ from .rewards import *  # noqa: F401, F403
++from .observations import *  # noqa: F401, F403
+diff --git a/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/curriculums.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/curriculums.py
+new file mode 100644
+index 0000000..c72eabd
+--- /dev/null
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/curriculums.py
+@@ -0,0 +1,50 @@
++"""Common functions that can be used to create curriculum for the learning environment.
++
++The functions can be passed to the :class:`isaaclab.managers.CurriculumTermCfg` object to enable
++the curriculum introduced by the function.
++"""
++
++from __future__ import annotations
++
++import torch
++from collections.abc import Sequence
++from typing import TYPE_CHECKING
++
++from isaaclab.assets import Articulation
++from isaaclab.managers import SceneEntityCfg
++from isaaclab.terrains import TerrainImporter
++
++if TYPE_CHECKING:
++    from isaaclab.envs import RLTaskEnv
++
++
++def terrain_levels_vel(
++    env: RLTaskEnv, env_ids: Sequence[int], asset_cfg: SceneEntityCfg = SceneEntityCfg("robot")
++) -> torch.Tensor:
++    """Curriculum based on the distance the robot walked when commanded to move at a desired velocity.
++
++    This term is used to increase the difficulty of the terrain when the robot walks far enough and decrease the
++    difficulty when the robot walks less than half of the distance required by the commanded velocity.
++
++    .. note::
++        It is only possible to use this term with the terrain type ``generator``. For further information
++        on different terrain types, check the :class:`isaaclab.terrains.TerrainImporter` class.
++
++    Returns:
++        The mean terrain level for the given environment ids.
++    """
++    # extract the used quantities (to enable type-hinting)
++    asset: Articulation = env.scene[asset_cfg.name]
++    terrain: TerrainImporter = env.scene.terrain
++    command = env.command_manager.get_command("base_velocity")
++    # compute the distance the robot walked
++    distance = torch.norm(asset.data.root_pos_w[env_ids, :2] - env.scene.env_origins[env_ids, :2], dim=1)
++    # robots that walked far enough progress to harder terrains
++    move_up = distance > terrain.cfg.terrain_generator.size[0] / 2
++    # robots that walked less than half of their required distance go to simpler terrains
++    move_down = distance < torch.norm(command[env_ids, :2], dim=1) * env.max_episode_length_s * 0.5
++    move_down *= ~move_up
++    # update terrain levels
++    terrain.update_env_origins(env_ids, move_up, move_down)
++    # return the mean terrain level
++    return torch.mean(terrain.terrain_levels.float())
+diff --git a/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/observations.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/observations.py
+new file mode 100755
+index 0000000..ca9edfb
+--- /dev/null
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/observations.py
+@@ -0,0 +1,16 @@
++from __future__ import annotations
++
++import torch
++from typing import TYPE_CHECKING
++
++from isaaclab.sensors import ContactSensor
++from isaaclab.managers import SceneEntityCfg
++
++if TYPE_CHECKING:
++    from isaaclab.envs import ManagerBasedRLEnv
++
++
++def body_contact(env: ManagerBasedRLEnv, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
++    """The feet contact of the robot."""
++    contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
++    return contact_sensor.data.current_contact_time[:, sensor_cfg.body_ids] > 0.001
+diff --git a/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/rewards.py b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/rewards.py
+new file mode 100644
+index 0000000..cf8c713
+--- /dev/null
++++ b/source/beatleslab/beatleslab/tasks/locomotion/velocity/mdp/rewards.py
+@@ -0,0 +1,62 @@
++from __future__ import annotations
++
++import torch
++from typing import TYPE_CHECKING
++
++from isaaclab.managers import SceneEntityCfg
++from isaaclab.sensors import ContactSensor
++
++if TYPE_CHECKING:
++    from isaaclab.envs import ManagerBasedRLEnv
++
++
++def feet_air_time(
++    env: ManagerBasedRLEnv, command_name: str, sensor_cfg: SceneEntityCfg, threshold: float
++) -> torch.Tensor:
++    """Reward long steps taken by the feet using L2-kernel.
++
++    This function rewards the agent for taking steps that are longer than a threshold. This helps ensure
++    that the robot lifts its feet off the ground and takes steps. The reward is computed as the sum of
++    the time for which the feet are in the air.
++
++    If the commands are small (i.e. the agent is not supposed to take a step), then the reward is zero.
++    """
++    # extract the used quantities (to enable type-hinting)
++    contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
++    # compute the reward
++    first_contact = contact_sensor.compute_first_contact(env.step_dt)[:, sensor_cfg.body_ids]
++    last_air_time = contact_sensor.data.last_air_time[:, sensor_cfg.body_ids]
++    reward = torch.sum((last_air_time - threshold) * first_contact, dim=1)
++    # no reward for zero command
++    reward *= torch.norm(env.command_manager.get_command(command_name)[:, :2], dim=1) > 0.1
++    return reward
++
++
++def feet_air_time_positive_biped(
++    env: ManagerBasedRLEnv, command_name: str, threshold: float, sensor_cfg: SceneEntityCfg
++) -> torch.Tensor:
++    """Reward long steps taken by the feet for bipeds.
++
++    This function rewards the agent for taking steps up to a specified threshold and also keep one foot at
++    a time in the air.
++
++    If the commands are small (i.e. the agent is not supposed to take a step), then the reward is zero.
++    """
++    contact_sensor: ContactSensor = env.scene.sensors[sensor_cfg.name]
++    # compute the reward
++    air_time = contact_sensor.data.current_air_time[:, sensor_cfg.body_ids]
++    contact_time = contact_sensor.data.current_contact_time[:, sensor_cfg.body_ids]
++    in_contact = contact_time > 0.0
++    in_mode_time = torch.where(in_contact, contact_time, air_time)
++    single_stance = torch.sum(in_contact.int(), dim=1) == 1
++    reward = torch.min(torch.where(single_stance.unsqueeze(-1), in_mode_time, 0.0), dim=1)[0]
++    reward = torch.clamp(reward, max=threshold)
++    # no reward for zero command
++    reward *= torch.norm(env.command_manager.get_command(command_name)[:, :2], dim=1) > 0.1
++    return reward
++
++
++def energy(env, asset_cfg: SceneEntityCfg = SceneEntityCfg("robot")) -> torch.Tensor:
++    asset = env.scene[asset_cfg.name]
++    reward = torch.norm(torch.abs(asset.data.applied_torque * asset.data.joint_vel), dim=-1)
++    return reward
+diff --git a/source/beatleslab/beatleslab/terrains/__init__.py b/source/beatleslab/beatleslab/terrains/__init__.py
+new file mode 100644
+index 0000000..fe138e5
+--- /dev/null
++++ b/source/beatleslab/beatleslab/terrains/__init__.py
+@@ -0,0 +1,7 @@
++# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
++# All rights reserved.
++#
++# SPDX-License-Identifier: BSD-3-Clause
++
++
++from .terrain_generator_cfg import GRAVEL_TERRAINS_CFG, ROUGH_TERRAINS_CFG
+\ No newline at end of file
+diff --git a/source/beatleslab/beatleslab/terrains/terrain_generator_cfg.py b/source/beatleslab/beatleslab/terrains/terrain_generator_cfg.py
+new file mode 100644
+index 0000000..8c21b79
+--- /dev/null
++++ b/source/beatleslab/beatleslab/terrains/terrain_generator_cfg.py
+@@ -0,0 +1,85 @@
++# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
++# All rights reserved.
++#
++# SPDX-License-Identifier: BSD-3-Clause
++
++"""
++Configuration classes defining the different terrains available. Each configuration class must
++inherit from ``isaaclab.terrains.terrains_cfg.TerrainConfig`` and define the following attributes:
++
++- ``name``: Name of the terrain. This is used for the prim name in the USD stage.
++- ``function``: Function to generate the terrain. This function must take as input the terrain difficulty
++  and the configuration parameters and return a `tuple with the `trimesh`` mesh object and terrain origin.
++"""
++
++import isaaclab.terrains as terrain_gen
++from isaaclab.terrains.terrain_generator_cfg import TerrainGeneratorCfg
++
++
++GRAVEL_TERRAINS_CFG = TerrainGeneratorCfg(
++    curriculum=False,
++    size=(8.0, 8.0),
++    border_width=20.0,
++    num_rows=10,
++    num_cols=20,
++    horizontal_scale=0.1,
++    vertical_scale=0.005,
++    slope_threshold=0.75,
++    use_cache=False,
++    sub_terrains={
++        "random_rough": terrain_gen.HfRandomUniformTerrainCfg(
++            proportion=0.2, noise_range=(0.00, 0.02), noise_step=0.02, border_width=0.25
++        ),
++        "hf_pyramid_slope": terrain_gen.HfPyramidSlopedTerrainCfg(
++            proportion=0.1, slope_range=(0.0, 0.2), platform_width=2.0, border_width=0.25
++        ),
++        "hf_pyramid_slope_inv": terrain_gen.HfInvertedPyramidSlopedTerrainCfg(
++            proportion=0.1, slope_range=(0.0, 0.2), platform_width=2.0, border_width=0.25
++        ),
++    },
++)
++
++ROUGH_TERRAINS_CFG = TerrainGeneratorCfg(
++    curriculum=True,
++    size=(8.0, 8.0),
++    border_width=20.0,
++    num_rows=10,
++    num_cols=20,
++    horizontal_scale=0.1,
++    vertical_scale=0.005,
++    slope_threshold=0.75,
++    use_cache=False,
++    sub_terrains={
++        "flat": terrain_gen.MeshPlaneTerrainCfg(
++            proportion=0.3,
++        ),
++        "hf_pyramid_slope": terrain_gen.HfPyramidSlopedTerrainCfg(
++            proportion=0.1, slope_range=(0.0, 0.4), platform_width=2.0, border_width=0.25
++        ),
++        "hf_pyramid_slope_inv": terrain_gen.HfInvertedPyramidSlopedTerrainCfg(
++            proportion=0.1, slope_range=(0.0, 0.4), platform_width=2.0, border_width=0.25
++        ),
++        "pyramid_stairs": terrain_gen.MeshPyramidStairsTerrainCfg(
++            proportion=0.05,
++            step_height_range=(0.0, 0.1),
++            step_width=0.3,
++            platform_width=3.0,
++            border_width=1.0,
++            holes=False,
++        ),
++        "pyramid_stairs_inv": terrain_gen.MeshInvertedPyramidStairsTerrainCfg(
++            proportion=0.05,
++            step_height_range=(0.0, 0.1),
++            step_width=0.3,
++            platform_width=3.0,
++            border_width=1.0,
++            holes=False,
++        ),
++        "wave_terrain": terrain_gen.HfWaveTerrainCfg(
++            proportion=0.2, amplitude_range=(0.0, 0.2), num_waves=4, border_width=0.25
++        ),
++        "random_rough": terrain_gen.HfRandomUniformTerrainCfg(
++            proportion=0.2, noise_range=(0.0, 0.06), noise_step=0.02, border_width=0.25
++        ),
++    },
++)
+\ No newline at end of file
+diff --git a/source/ext_template/ext_template/ui_extension_example.py b/source/beatleslab/beatleslab/ui_extension_example.py
+similarity index 89%
+rename from source/ext_template/ext_template/ui_extension_example.py
+rename to source/beatleslab/beatleslab/ui_extension_example.py
+index e2c7051..86e193c 100644
+--- a/source/ext_template/ext_template/ui_extension_example.py
++++ b/source/beatleslab/beatleslab/ui_extension_example.py
+@@ -3,7 +3,7 @@ import omni.ext
+ 
+ # Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+ def some_public_function(x: int):
+-    print("[ext_template] some_public_function was called with x: ", x)
++    print("[beatleslab] some_public_function was called with x: ", x)
+     return x**x
+ 
+ 
+@@ -14,7 +14,7 @@ class ExampleExtension(omni.ext.IExt):
+     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
+     # this extension is located on filesystem.
+     def on_startup(self, ext_id):
+-        print("[ext_template] startup")
++        print("[beatleslab] startup")
+ 
+         self._count = 0
+ 
+@@ -38,4 +38,4 @@ class ExampleExtension(omni.ext.IExt):
+                     omni.ui.Button("Reset", clicked_fn=on_reset)
+ 
+     def on_shutdown(self):
+-        print("[ext_template] shutdown")
++        print("[beatleslab] shutdown")
+diff --git a/source/ext_template/config/extension.toml b/source/beatleslab/config/extension.toml
+similarity index 97%
+rename from source/ext_template/config/extension.toml
+rename to source/beatleslab/config/extension.toml
+index ffdd37d..56850d1 100644
+--- a/source/ext_template/config/extension.toml
++++ b/source/beatleslab/config/extension.toml
+@@ -23,7 +23,7 @@ keywords = ["extension", "template", "isaaclab"]
+ # NOTE: Add additional dependencies here
+ 
+ [[python.module]]
+-name = "ext_template"
++name = "beatleslab"
+ 
+ [isaaclab_settings]
+ # TODO: Uncomment and list any apt dependencies here.
+diff --git a/source/ext_template/docs/CHANGELOG.rst b/source/beatleslab/docs/CHANGELOG.rst
+similarity index 100%
+rename from source/ext_template/docs/CHANGELOG.rst
+rename to source/beatleslab/docs/CHANGELOG.rst
+diff --git a/source/ext_template/setup.py b/source/beatleslab/setup.py
+similarity index 90%
+rename from source/ext_template/setup.py
+rename to source/beatleslab/setup.py
+index 2e4681d..5f8ee67 100644
+--- a/source/ext_template/setup.py
++++ b/source/beatleslab/setup.py
+@@ -1,4 +1,4 @@
+-"""Installation script for the 'ext_template' python package."""
++"""Installation script for the 'beatleslab' python package."""
+ 
+ import os
+ import toml
+@@ -18,8 +18,8 @@ INSTALL_REQUIRES = [
+ 
+ # Installation operation
+ setup(
+-    name="ext_template",
+-    packages=["ext_template"],
++    name="beatleslab",
++    packages=["beatleslab"],
+     author=EXTENSION_TOML_DATA["package"]["author"],
+     maintainer=EXTENSION_TOML_DATA["package"]["maintainer"],
+     url=EXTENSION_TOML_DATA["package"]["repository"],
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/__init__.py b/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/__init__.py
+deleted file mode 100644
+index 2d40155..0000000
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/__init__.py
++++ /dev/null
+@@ -1,47 +0,0 @@
+-import gymnasium as gym
+-
+-from . import agents, flat_env_cfg, rough_env_cfg
+-
+-##
+-# Register Gym environments.
+-##
+-
+-gym.register(
+-    id="Template-Isaac-Velocity-Flat-Anymal-D-v0",
+-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+-    disable_env_checker=True,
+-    kwargs={
+-        "env_cfg_entry_point": flat_env_cfg.AnymalDFlatEnvCfg,
+-        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AnymalDFlatPPORunnerCfg",
+-    },
+-)
+-
+-gym.register(
+-    id="Template-Isaac-Velocity-Flat-Anymal-D-Play-v0",
+-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+-    disable_env_checker=True,
+-    kwargs={
+-        "env_cfg_entry_point": flat_env_cfg.AnymalDFlatEnvCfg_PLAY,
+-        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AnymalDFlatPPORunnerCfg",
+-    },
+-)
+-
+-gym.register(
+-    id="Template-Isaac-Velocity-Rough-Anymal-D-v0",
+-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+-    disable_env_checker=True,
+-    kwargs={
+-        "env_cfg_entry_point": rough_env_cfg.AnymalDRoughEnvCfg,
+-        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AnymalDRoughPPORunnerCfg",
+-    },
+-)
+-
+-gym.register(
+-    id="Template-Isaac-Velocity-Rough-Anymal-D-Play-v0",
+-    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+-    disable_env_checker=True,
+-    kwargs={
+-        "env_cfg_entry_point": rough_env_cfg.AnymalDRoughEnvCfg_PLAY,
+-        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:AnymalDRoughPPORunnerCfg",
+-    },
+-)
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/flat_env_cfg.py b/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/flat_env_cfg.py
+deleted file mode 100644
+index 307f127..0000000
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/flat_env_cfg.py
++++ /dev/null
+@@ -1,38 +0,0 @@
+-from isaaclab.utils import configclass
+-
+-from .rough_env_cfg import AnymalDRoughEnvCfg
+-
+-
+-@configclass
+-class AnymalDFlatEnvCfg(AnymalDRoughEnvCfg):
+-    def __post_init__(self):
+-        # post init of parent
+-        super().__post_init__()
+-
+-        # override rewards
+-        self.rewards.flat_orientation_l2.weight = -5.0
+-        self.rewards.dof_torques_l2.weight = -2.5e-5
+-        self.rewards.feet_air_time.weight = 0.5
+-        # change terrain to flat
+-        self.scene.terrain.terrain_type = "plane"
+-        self.scene.terrain.terrain_generator = None
+-        # no height scan
+-        self.scene.height_scanner = None
+-        self.observations.policy.height_scan = None
+-        # no terrain curriculum
+-        self.curriculum.terrain_levels = None
+-
+-
+-class AnymalDFlatEnvCfg_PLAY(AnymalDFlatEnvCfg):
+-    def __post_init__(self) -> None:
+-        # post init of parent
+-        super().__post_init__()
+-
+-        # make a smaller scene for play
+-        self.scene.num_envs = 50
+-        self.scene.env_spacing = 2.5
+-        # disable randomization for play
+-        self.observations.policy.enable_corruption = False
+-        # remove random pushing
+-        self.events.base_external_force_torque = None
+-        self.events.push_robot = None
+diff --git a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/rough_env_cfg.py b/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/rough_env_cfg.py
+deleted file mode 100644
+index 289b07f..0000000
+--- a/source/ext_template/ext_template/tasks/locomotion/velocity/config/anymal_d/rough_env_cfg.py
++++ /dev/null
+@@ -1,41 +0,0 @@
+-from isaaclab.utils import configclass
+-
+-from ext_template.tasks.locomotion.velocity.velocity_env_cfg import LocomotionVelocityRoughEnvCfg
+-
+-##
+-# Pre-defined configs
+-##
+-from isaaclab_assets.robots.anymal import ANYMAL_D_CFG  # isort: skip
+-
+-
+-@configclass
+-class AnymalDRoughEnvCfg(LocomotionVelocityRoughEnvCfg):
+-    def __post_init__(self):
+-        # post init of parent
+-        super().__post_init__()
+-        # switch robot to anymal-d
+-        self.scene.robot = ANYMAL_D_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+-
+-
+-@configclass
+-class AnymalDRoughEnvCfg_PLAY(AnymalDRoughEnvCfg):
+-    def __post_init__(self):
+-        # post init of parent
+-        super().__post_init__()
+-
+-        # make a smaller scene for play
+-        self.scene.num_envs = 50
+-        self.scene.env_spacing = 2.5
+-        # spawn the robot randomly in the grid (instead of their terrain levels)
+-        self.scene.terrain.max_init_terrain_level = None
+-        # reduce the number of terrains to save memory
+-        if self.scene.terrain.terrain_generator is not None:
+-            self.scene.terrain.terrain_generator.num_rows = 5
+-            self.scene.terrain.terrain_generator.num_cols = 5
+-            self.scene.terrain.terrain_generator.curriculum = False
+-
+-        # disable randomization for play
+-        self.observations.policy.enable_corruption = False
+-        # remove random pushing
+-        self.events.base_external_force_torque = None
+-        self.events.push_robot = None
